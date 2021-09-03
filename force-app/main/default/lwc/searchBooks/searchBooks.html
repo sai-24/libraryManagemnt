@@ -1,0 +1,36 @@
+<template>
+<div class="slds-m-top_small slds-m-bottom_medium">
+<h2 class="slds-text-heading_small slds-m-bottom_small">
+    Search By:
+</h2>
+
+<lightning-button variant="brand" label="Id" title="Search By Id" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+<lightning-button variant="brand" label="Name" title="Search By Name" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+<lightning-button variant="brand" label="Author" title="Search By Author" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+<lightning-button variant="brand" label="Category" title="Search By Category" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+
+
+</div>
+<div class="slds-m-top_small slds-m-bottom_medium">
+<div class="slds-p-around_medium lgc-bg">
+    <lightning-input class="txttext" type="text" label="Search Book" required ></lightning-input>
+</div>
+
+</div>
+<div class="slds-m-top_small slds-m-bottom_medium">
+
+
+<lightning-button variant="success" label="Search" title="Search action" onclick={handlesearchClick} class="slds-m-left_x-small"></lightning-button>
+
+
+</div>
+
+<div class="slds-m-top_small slds-m-bottom_medium" style="height: 300px;">
+<lightning-datatable
+        key-field="books.Id"
+        data={books}
+        columns={columns}
+        hide-checkbox-column>
+</lightning-datatable>
+</div>
+</template>
