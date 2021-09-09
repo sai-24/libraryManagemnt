@@ -21,14 +21,14 @@ public with sharing class getBooksList {
         return new list<Book__c>();
 
     }
-    @AuraEnabled(cacheable=false) 
+    @AuraEnabled(cacheable=true) 
     public static list<Book__c> getReturnedBooks(){
-        list<Book__c> b=[select Id,Book_Name__c,Book_Status__c,Return_Date__c from Book__c where Book_Status__c != 'Available'];
+        list<Book__c> b=[select Id,Book_Name__c,Book_Status__c,Return_Date__c from Book__c where Book_Status__c !=: 'Available'];
         system.debug('Returned Books--->'+b); 
         return b;
     }
-    @AuraEnabled(cacheable=false) 
+    @AuraEnabled(cacheable=true) 
     public static list<Book__c> getBorrowedBooks(){
-        return [select Id,Book_Name__c,Book_Status__c,Return_Date__c from Book__c where Book_Status__c = 'Available'];
+        return [select Id,Book_Name__c,Book_Status__c,Return_Date__c from Book__c where Book_Status__c =: 'Available'];
     }
 }

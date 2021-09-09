@@ -2,7 +2,7 @@ import { LightningElement } from 'lwc';
 import getBooks from '@salesforce/apex/getBooksList.getBooks';
 
 const columns = [
-{ label: 'id', fieldName: 'Id' },
+{ label: 'Id', fieldName: 'Id' },
 { label: 'Book Name', fieldName: 'Book_Name__c', type: 'text' },
 { label: 'Book status', fieldName: 'Book_Status__c', type: 'text' },
 { label: 'Return Date', fieldName: 'Return_Date__c', type: 'date' }
