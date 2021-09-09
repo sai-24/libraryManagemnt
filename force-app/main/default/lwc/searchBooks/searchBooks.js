@@ -1,6 +1,6 @@
 import { LightningElement } from 'lwc';
 import getBooks from '@salesforce/apex/getBooksList.getBooks';
-import { refreshApex } from '@salesforce/apex';
+
 const columns = [
 { label: 'id', fieldName: 'Id' },
 { label: 'Book Name', fieldName: 'Book_Name__c', type: 'text' },
@@ -38,10 +38,6 @@ bookslist(){
         
         );
 }
-refreshContact(){
-    refreshApex(this.bookslist);
 
-    
-  }
 
 }
