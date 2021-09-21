@@ -1,18 +1,19 @@
 import { LightningElement } from 'lwc';
 import getBooks from '@salesforce/apex/getBooksList.getBooks';
-
+import UpdateBook from '@salesforce/apex/getBooksList.UpdateBook';
 const columns = [
 { label: 'Id', fieldName: 'Id' },
 { label: 'Book Name', fieldName: 'Book_Name__c', type: 'text' },
-{ label: 'Book status', fieldName: 'Borrow__r[0].Book_Status__c', type: 'text' },
-{ label: 'Return Date', fieldName: 'Borrow__r[0].Returned_On__c', type: 'date' }
-
+{ label: 'Book status', fieldName: 'Book_Status__c', type: 'text' },
+{ label: 'Return Date', fieldName: 'Expected_Returned_Date__c', type: 'date' }
 ];
 export default class SearchBooks extends LightningElement {
 butvalue;
 txtvalue;
 columns=columns;
 books;
+Getselectedrows;
+reslist=[];
 handleClick(event){
     const buttonvalue=event.target.label;
     this.butvalue=buttonvalue;
@@ -37,6 +38,27 @@ bookslist(){
         }
         
         );
+}
+getSelectedRow(event){
+    const selectedRows = event.detail.selectedRows;
+    this.Getselectedrows=selectedRows;
+    console.log(selectedRows);
+    
+    for (let i = 0; i < selectedRows.length; i++){
+        this.reslist.push(selectedRows[i].Id); 
+        console.log("You selected: " +  this.reslist);
+    }
+
+}
+handleborrowClick(event){
+    UpdateBook({
+        ids:this.reslist
+    }).then(result=>{
+        this.bookslist();
+        console.log(result);
+    })
+
+    
 }
 
 

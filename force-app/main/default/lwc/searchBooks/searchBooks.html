@@ -1,37 +1,42 @@
 <template>
-<div class="slds-m-top_small slds-m-bottom_medium">
-<h2 class="slds-text-heading_small slds-m-bottom_small">
-    Search By:
-</h2>
+    <div class="slds-m-top_small slds-m-bottom_medium">
+        <h2 class="slds-text-heading_small slds-m-bottom_small">
+            Search By:
+        </h2>
 
-<lightning-button variant="Neutral" label="Id" title="Search By Id" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
-<lightning-button variant="Neutral" label="Name" title="Search By Name" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
-<lightning-button variant="Neutral" label="Author" title="Search By Author" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
-<lightning-button variant="Neutral" label="Category" title="Search By Category" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
-
-
-</div>
-<div class="slds-m-top_small slds-m-bottom_medium">
-    <h2>Search using : <strong>{butvalue}</strong></h2>
-<div class="slds-align_absolute-center lgc-bg">   
-    <lightning-input class="txttext" type="text" label="Search Book" required  ></lightning-input>
-</div>
-
-</div>
-<div class="slds-m-top_small slds-m-bottom_medium">
+        <lightning-button variant="Neutral" label="Id" title="Search By Id" onclick={handleClick}
+            class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="Neutral" label="Name" title="Search By Name" onclick={handleClick}
+            class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="Neutral" label="Author" title="Search By Author" onclick={handleClick}
+            class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="Neutral" label="Category" title="Search By Category" onclick={handleClick}
+            class="slds-m-left_x-small"></lightning-button>
 
 
-<lightning-button variant="success" label="Search" title="Search action" onclick={handlesearchClick} class="slds-m-left_x-small slds-align_absolute-center"></lightning-button>
+    </div>
+    <div class="slds-m-top_small slds-m-bottom_medium">
+        <h2>Search using : <strong>{butvalue}</strong></h2>
+        <div class="slds-align_absolute-center lgc-bg">
+            <lightning-input class="txttext" type="text" label="Search Book" required></lightning-input>
+        </div>
+
+    </div>
+    <div class="slds-m-top_small slds-m-bottom_medium">
 
 
-</div>
-<!-- <lightning-button-icon slot='actions' icon-name='utility:sync' onclick={refreshContact} title='Refresh'></lightning-button-icon> -->
-<div class="slds-m-top_small slds-m-bottom_medium" style="height: 300px;">
-<lightning-datatable
-        key-field="books.Id"
-        data={books}
-        columns={columns}
-        hide-checkbox-column>
-</lightning-datatable>
-</div>
+        <lightning-button variant="success" label="Search" title="Search action" onclick={handlesearchClick}
+            class="slds-m-left_x-small slds-align_absolute-center"></lightning-button>
+
+
+    </div>
+    <!-- <lightning-button-icon slot='actions' icon-name='utility:sync' onclick={refreshContact} title='Refresh'></lightning-button-icon> -->
+    <div class="slds-m-top_small slds-m-bottom_medium" style="height: 300px;">
+        <lightning-datatable key-field="books.Id" data={books} columns={columns}  onrowselection={getSelectedRow}>
+        </lightning-datatable>
+    </div>
+    <div class="slds-m-top_small slds-m-bottom_medium">
+        <lightning-button variant="brand-outline" label="Borrow" title="Borrow action" onclick={handleborrowClick}
+            class="slds-m-left_x-small "></lightning-button>
+    </div>
 </template>
