@@ -1,15 +1,15 @@
 <template>
-    <template if:true={returnbooks.data}>
+    
 <div class="slds-m-top_small slds-m-bottom_medium" style="height: 300px;">
     <lightning-datatable
             key-field="returnbooks.Id"
-            data={returnbooks.data}
+            data={returnbooks}
             columns={columns}
             onrowselection={getSelectedRow}
             >
     </lightning-datatable>
     </div>
-</template>
+
 <div class="slds-m-top_small slds-m-bottom_medium">
     <lightning-button variant="brand-outline" label="Return" title="Return action" onclick={handlereturnClick}
         class="slds-m-left_x-small "></lightning-button>

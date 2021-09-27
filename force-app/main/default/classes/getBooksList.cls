@@ -5,18 +5,18 @@ public static list<Book__c> getBooks(string getvalue,string textvalue) {
     System.debug('txt value'+textvalue);
     string testvalue='%'+textvalue+'%';
     if(getvalue == 'Id'){
-        return [select b.Id,b.Book_Name__c,b.Book_Status__c,b.Expected_Returned_Date__c from Book__c b where Id =: textvalue];
+        return [select b.Id,b.Book_Name__c,b.Book_Status__c,b.Returned_Date__c from Book__c b where Id =: textvalue];
         //return [FIND {"textvalue"} IN ALL FIELDS RETURNING Book__c(Id,Book_Name__c,Book_Status__c,Return_Date__c)];
 
     }
     if(getvalue == 'Author'){
-            return [select b.Id,b.Book_Name__c,b.Book_Status__c,b.Expected_Returned_Date__c from Book__c b where b.Author__c like : testvalue];
+            return [select b.Id,b.Book_Name__c,b.Book_Status__c,b.Returned_Date__c from Book__c b where b.Author__c like : testvalue];
         }
         if(getvalue == 'Category'){
-            return [select b.Id,b.Book_Name__c,b.Book_Status__c,b.Expected_Returned_Date__c from Book__c b  where b.Category__c like : testvalue];
+            return [select b.Id,b.Book_Name__c,b.Book_Status__c,b.Returned_Date__c from Book__c b  where b.Category__c like : testvalue];
         }
         if(getvalue == 'Name'){
-            return [select b.Id,b.Book_Name__c,b.Book_Status__c,b.Expected_Returned_Date__c from Book__c b where b.Book_Name__c like : testvalue];
+            return [select b.Id,b.Book_Name__c,b.Book_Status__c,b.Returned_Date__c from Book__c b where b.Book_Name__c like : testvalue];
         }
     return new list<Book__c>();
 
@@ -42,7 +42,7 @@ public static void UpdateBook(list<Id> ids){
         {
             for(Book__c b :resbooks){
         system.debug('Update Start-->');
-       
+        b.Returned_Date__c=System.today()+14;
         b.Borrowed_Date__c=System.today();
         b.Book_Status__c='BORROWED';    
         update b;
@@ -58,9 +58,9 @@ public static void UpdateReturnBook(list<Id> ids){
     if (!resbooks.isEmpty())
         {
         for(Book__c b :resbooks){               
-        b.Returned_Date__c=System.today();
+        b.Returned_Date__c=null;
         b.Book_Status__c='AVAILABLE';
-            
+
         update b;
             }
         }
